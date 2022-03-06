@@ -1012,14 +1012,14 @@ void stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, L
  80008dc:	2b01      	cmp	r3, #1
  80008de:	d10b      	bne.n	80008f8 <stepper_manual+0x2c>
 	 							{
-	 								 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	 								 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
  80008e0:	2201      	movs	r2, #1
- 80008e2:	2110      	movs	r1, #16
+ 80008e2:	2102      	movs	r1, #2
  80008e4:	481d      	ldr	r0, [pc, #116]	; (800095c <stepper_manual+0x90>)
  80008e6:	f000 fd21 	bl	800132c <HAL_GPIO_WritePin>
-	 								 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+	 								 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
  80008ea:	2200      	movs	r2, #0
- 80008ec:	2120      	movs	r1, #32
+ 80008ec:	2104      	movs	r1, #4
  80008ee:	481b      	ldr	r0, [pc, #108]	; (800095c <stepper_manual+0x90>)
  80008f0:	f000 fd1c 	bl	800132c <HAL_GPIO_WritePin>
 
@@ -1033,14 +1033,14 @@ void stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, L
  80008fa:	2b01      	cmp	r3, #1
  80008fc:	d10b      	bne.n	8000916 <stepper_manual+0x4a>
 	 							{
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
  80008fe:	2201      	movs	r2, #1
- 8000900:	2120      	movs	r1, #32
+ 8000900:	2104      	movs	r1, #4
  8000902:	4816      	ldr	r0, [pc, #88]	; (800095c <stepper_manual+0x90>)
  8000904:	f000 fd12 	bl	800132c <HAL_GPIO_WritePin>
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
  8000908:	2200      	movs	r2, #0
- 800090a:	2110      	movs	r1, #16
+ 800090a:	2102      	movs	r1, #2
  800090c:	4813      	ldr	r0, [pc, #76]	; (800095c <stepper_manual+0x90>)
  800090e:	f000 fd0d 	bl	800132c <HAL_GPIO_WritePin>
 
@@ -1054,14 +1054,14 @@ void stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, L
  8000918:	2b01      	cmp	r3, #1
  800091a:	d10b      	bne.n	8000934 <stepper_manual+0x68>
 	 							{
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
  800091c:	2201      	movs	r2, #1
- 800091e:	2102      	movs	r1, #2
+ 800091e:	2110      	movs	r1, #16
  8000920:	480e      	ldr	r0, [pc, #56]	; (800095c <stepper_manual+0x90>)
  8000922:	f000 fd03 	bl	800132c <HAL_GPIO_WritePin>
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
  8000926:	2200      	movs	r2, #0
- 8000928:	2104      	movs	r1, #4
+ 8000928:	2120      	movs	r1, #32
  800092a:	480c      	ldr	r0, [pc, #48]	; (800095c <stepper_manual+0x90>)
  800092c:	f000 fcfe 	bl	800132c <HAL_GPIO_WritePin>
 
@@ -1075,14 +1075,14 @@ void stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, L
  8000936:	2b01      	cmp	r3, #1
  8000938:	d10b      	bne.n	8000952 <stepper_manual+0x86>
 	 							{
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
  800093a:	2201      	movs	r2, #1
- 800093c:	2104      	movs	r1, #4
+ 800093c:	2120      	movs	r1, #32
  800093e:	4807      	ldr	r0, [pc, #28]	; (800095c <stepper_manual+0x90>)
  8000940:	f000 fcf4 	bl	800132c <HAL_GPIO_WritePin>
-	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
+	 								HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
  8000944:	2200      	movs	r2, #0
- 8000946:	2102      	movs	r1, #2
+ 8000946:	2110      	movs	r1, #16
  8000948:	4804      	ldr	r0, [pc, #16]	; (800095c <stepper_manual+0x90>)
  800094a:	f000 fcef 	bl	800132c <HAL_GPIO_WritePin>
 
