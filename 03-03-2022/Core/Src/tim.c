@@ -21,9 +21,8 @@
 #include "tim.h"
 
 /* USER CODE BEGIN 0 */
+#include "stepper_manual.h"
 
-int stepper_speed;
-stepper_speed = 100;
 
 /* USER CODE END 0 */
 
@@ -34,7 +33,6 @@ void MX_TIM3_Init(void)
 {
 
   /* USER CODE BEGIN TIM3_Init 0 */
-
 
   /* USER CODE END TIM3_Init 0 */
 

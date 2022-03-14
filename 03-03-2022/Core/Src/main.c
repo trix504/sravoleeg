@@ -24,7 +24,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 #include "stepper_manual.h"
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -57,7 +59,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t Rx_Data[4];     // array for data from display
+uint8_t Rx_Data[6];     //. array for data from display
 
 /* USER CODE END 0 */
 
@@ -90,12 +92,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-  MX_USART1_UART_Init();
   MX_TIM3_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
   HAL_TIM_Base_Start_IT(&htim3);	//. interrupt
-
 
   /* USER CODE END 2 */
 
@@ -107,34 +107,34 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  int  LX_to_back  = 0;	  int  LZ_go_in  = 0;	 int  RX_to_back  = 0;		int  RZ_go_in  = 0;
-	  int  LX_to_front = 0;	  int  LZ_go_out = 0;	 int  RX_to_front = 0;		int  RZ_go_out = 0;
-	  int  LY_to_top   = 0;	  int  LW_cw     = 0;	 int  RY_to_top   = 0;		int  RW_cw     = 0;
-	  int  LY_to_below = 0;	  int  LW_ccw    = 0;	 int  RY_to_below = 0;		int  RW_ccw    = 0;
 
-	  HAL_UART_Receive(&huart1, Rx_Data, 4, 1000);                          //. 1000 = time delay
+	 int  LX_to_back  = 0;	  int  LZ_go_in  = 0;	 int  RX_to_back  = 0;		int  RZ_go_in  = 0;
+	 int  LX_to_front = 0;	  int  LZ_go_out = 0;	 int  RX_to_front = 0;		int  RZ_go_out = 0;
+	 int  LY_to_top   = 0;	  int  LW_cw     = 0;	 int  RY_to_top   = 0;		int  RW_cw     = 0;
+	 int  LY_to_below = 0;	  int  LW_ccw    = 0;	 int  RY_to_below = 0;		int  RW_ccw    = 0;
 
-	  if ((Rx_Data[1] == 0x34) && (Rx_Data[2] == 0x33))  LX_to_back  = 1;	//. if manual LX to back  = pressed (page 4 button 3)
-	  if ((Rx_Data[1] == 0x34) && (Rx_Data[2] == 0x34))  LX_to_front = 1;	//. if manual LX to front = pressed (page 4 button 4)
-	  if ((Rx_Data[1] == 0x35) && (Rx_Data[2] == 0x33))  LY_to_top   = 1;	//. if manual LY to top   = pressed (page 5 button 3)
-	  if ((Rx_Data[1] == 0x35) && (Rx_Data[2] == 0x34))  LY_to_below = 1;	//. if manual LY to BELOW = pressed (page 5 button 4)
-	  if ((Rx_Data[1] == 0x36) && (Rx_Data[2] == 0x33))  LZ_go_in    = 1;	//. if manual LZ go in    = pressed (page 6 button 3)
-	  if ((Rx_Data[1] == 0x36) && (Rx_Data[2] == 0x34))  LZ_go_out   = 1;	//. if manual LZ go out   = pressed (page 6 button 4)
-	  if ((Rx_Data[1] == 0x37) && (Rx_Data[2] == 0x33))  LW_cw       = 1;	//. if manual LW cw       = pressed (page 7 button 3)
-	  if ((Rx_Data[1] == 0x37) && (Rx_Data[2] == 0x34))  LW_ccw      = 1;	//. if manual LW ccw      = pressed (page 7 button 4)
+	 HAL_UART_Receive(&huart1, Rx_Data, 6, 1000);                          //. 1000 = time delay
 
-	  if ((Rx_Data[1] == 0x38) && (Rx_Data[2] == 0x33))  RX_to_back  = 1;	//. if manual RX to back  = pressed (page 8  button 3)
-	  if ((Rx_Data[1] == 0x38) && (Rx_Data[2] == 0x34))  RX_to_front = 1;	//. if manual RX to front = pressed (page 8  button 4)
-	  if ((Rx_Data[1] == 0x39) && (Rx_Data[2] == 0x33))  RY_to_top   = 1;	//. if manual RY to top   = pressed (page 9  button 3)
-	  if ((Rx_Data[1] == 0x39) && (Rx_Data[2] == 0x34))  RY_to_below = 1;	//. if manual RY to BELOW = pressed (page 9  button 4)
-	  if ((Rx_Data[1] == 0x3A) && (Rx_Data[2] == 0x33))  RZ_go_in    = 1;	//. if manual RZ go in    = pressed (page 10 button 3) ascii 3A = :
-	  if ((Rx_Data[1] == 0x3A) && (Rx_Data[2] == 0x34))  RZ_go_out   = 1;	//. if manual RZ go out   = pressed (page 10 button 4) ascii 3A = :
-	  if ((Rx_Data[1] == 0x3B) && (Rx_Data[2] == 0x33))  RW_cw       = 1;	//. if manual RW cw       = pressed (page 11 button 3) ascii 3B = ;
-	  if ((Rx_Data[1] == 0x3B) && (Rx_Data[2] == 0x34))  RW_ccw      = 1;	//. if manual RW ccw      = pressed (page 11 button 4) ascii 3B = ;
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x34) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  LX_to_back  = 1;	//. if manual LX to back  = pressed (page 04 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x34) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  LX_to_front = 1;	//. if manual LX to front = pressed (page 04 button 04)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x35) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  LY_to_top   = 1;	//. if manual LY to top   = pressed (page 05 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x35) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  LY_to_below = 1;	//. if manual LY to BELOW = pressed (page 05 button 04)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x36) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  LZ_go_in    = 1;	//. if manual LZ go in    = pressed (page 06 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x36) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  LZ_go_out   = 1;	//. if manual LZ go out   = pressed (page 06 button 04)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x37) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  LW_cw       = 1;	//. if manual LW cw       = pressed (page 07 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x37) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  LW_ccw      = 1;	//. if manual LW ccw      = pressed (page 07 button 04)
 
-	  stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, LZ_go_out, LW_cw, LW_ccw,
-	 			     RX_to_back, RX_to_front, RY_to_top, RY_to_below, RZ_go_in, RZ_go_out, RW_cw, RW_ccw  ); //. function call
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x38) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  RX_to_back  = 1;	//. if manual RX to back  = pressed (page 08 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x38) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  RX_to_front = 1;	//. if manual RX to front = pressed (page 08 button 04)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x39) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  RY_to_top   = 1;	//. if manual RY to top   = pressed (page 09 button 03)
+	 if ((Rx_Data[1] == 0x30) && (Rx_Data[2] == 0x39) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  RY_to_below = 1;	//. if manual RY to BELOW = pressed (page 09 button 04)
+	 if ((Rx_Data[1] == 0x31) && (Rx_Data[2] == 0x30) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  RZ_go_in    = 1;	//. if manual RZ go in    = pressed (page 10 button 03)
+	 if ((Rx_Data[1] == 0x31) && (Rx_Data[2] == 0x30) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  RZ_go_out   = 1;	//. if manual RZ go out   = pressed (page 10 button 04)
+	 if ((Rx_Data[1] == 0x31) && (Rx_Data[2] == 0x31) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x33))  RW_cw       = 1;	//. if manual RW cw       = pressed (page 11 button 03)
+	 if ((Rx_Data[1] == 0x31) && (Rx_Data[2] == 0x31) && (Rx_Data[3] == 0x30) && (Rx_Data[4] == 0x34))  RW_ccw      = 1;	//. if manual RW ccw      = pressed (page 11 button 04)
 
+	 stepper_manual(LX_to_back, LX_to_front, LY_to_top, LY_to_below, LZ_go_in, LZ_go_out, LW_cw, LW_ccw,
+	 	 		    RX_to_back, RX_to_front, RY_to_top, RY_to_below, RZ_go_in, RZ_go_out, RW_cw, RW_ccw  ); //. function call
 
   }
   /* USER CODE END 3 */
@@ -193,8 +193,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //. interrupt timer3
 
 	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
-
-
 
 /* USER CODE END 4 */
 
